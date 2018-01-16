@@ -4,8 +4,11 @@ build:
   box: oraclelinux:7.3
   steps:
    - script:
-      name: Download & Install GO dependency to "/u01/qatools" directory
+      name: Download & Install GO
       code: |
+
+       sudo yum install tar wget -y
+       sudo yum clean all
 
        export VERSION=1.9.2
        export OS=linux
