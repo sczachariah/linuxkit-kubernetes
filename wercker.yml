@@ -14,13 +14,14 @@ build:
        export OS=linux
        export ARCH=amd64
        export INSTALLS_HOME=/usr/local
+
+
+       cd $INSTALLS_HOME
        wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
+       tar zxf `ls go*.tar.gz`
 
-       mkdir -p $INSTALLS_HOME/go
-       tar -C $INSTALLS_HOME/go -xzf go1.9.2.linux-amd64.tar.gz
-
-       export GOROOT=$INSTALLS_HOME/go$VERSION/go
-       export GOPATH=$HOME/go
+       export GOROOT=$INSTALLS_HOME
+       export GOPATH=$GOROOT/go
        export GOBIN=$GOPATH/bin
        export PATH=$GOPATH:$GOBIN:$PATH
 
