@@ -37,7 +37,7 @@ build:
 
 
        git clone https://github.com/linuxkit/kubernetes.git
-       cd $HOME/go/src/kubernetes
+       cd $GOROOT/src/kubernetes
        make all
 
        KUBE_MASTER_AUTOINIT="" ./boot.sh
