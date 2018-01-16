@@ -33,6 +33,7 @@ build:
        KUBE_MASTER_AUTOINIT="" ./boot.sh
 
        kubectl get nodes
+       
 
 
 
