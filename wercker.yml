@@ -17,12 +17,12 @@ build:
        wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
 
        mkdir -p $INSTALLS_HOME/go$VERSION
-       tar -C $INSTALLS_HOME/go$VERSION -xzf go$VERSION.$OS-$ARCH.tar.gz
+       tar -C $INSTALLS_HOME/go$VERSION -xzf "go$VERSION.$OS-$ARCH.tar.gz"
 
-       set GOROOT=$INSTALLS_HOME/go$VERSION/go
-       set GOPATH=$HOME/go
-       set GOBIN=$GOPATH/bin
-       set PATH=$GOPATH:$GOBIN:$PATH
+       export GOROOT=$INSTALLS_HOME/go$VERSION/go
+       export GOPATH=$HOME/go
+       export GOBIN=$GOPATH/bin
+       export PATH=$GOPATH:$GOBIN:$PATH
 
        go version;
 
