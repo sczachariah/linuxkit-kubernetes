@@ -7,7 +7,7 @@ build:
       name: setup go
       code: |
 
-       sudo yum install git tar wget -y
+       sudo yum install make git tar wget -y
        sudo yum clean all
 
        export VERSION=1.9.2
