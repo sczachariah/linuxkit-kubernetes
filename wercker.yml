@@ -20,9 +20,9 @@ build:
        wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
        tar zxf `ls go*.tar.gz`
 
-       export GOROOT=$INSTALLS_HOME
-       export GOPATH=$GOROOT/go
-       export GOBIN=$GOPATH/bin
+       export GOROOT=$INSTALLS_HOME/go
+       export GOPATH=$HOME/go
+       export GOBIN=$GOROOT/bin
        export PATH=$GOPATH:$GOBIN:$PATH
 
        go version;
