@@ -7,6 +7,7 @@ build:
       name: setup go
       code: |
 
+       sudo yum groups install "Development Tools" -y
        sudo yum install tar wget -y
        sudo yum clean all
 
