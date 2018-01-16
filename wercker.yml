@@ -4,9 +4,10 @@ build:
   box: oraclelinux:7.3
   steps:
    - script:
-      name: Download & Install GO
+      name: setup go
       code: |
 
+       sudo yum groups install "Development Tools" -y
        sudo yum install tar wget -y
        sudo yum clean all
 
