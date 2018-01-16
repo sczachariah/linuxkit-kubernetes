@@ -1,0 +1,29 @@
+# The container definition we want to use for developing our app
+
+build:
+  box: golang
+  steps:
+   - setup-go-workspace:
+      package-dir: weblogic-operator
+
+   - script:
+      name: install go tools
+      code: |
+       go version
+
+   - script:
+      name: install dependencies
+      code: |
+       set GOROOT=/usr/local/go
+       set GOPATH=$HOME/go
+       set GOBIN=$GOPATH/bin
+       set PATH=$GOPATH:$GOBIN:$PATH
+
+       go get -u github.com/linuxkit/linuxkit/src/cmd/linuxkit
+       cp -r /scratch/fmwplt/go/bin/linuxkit /bin/linuxkit
+       chmod 755 /bin/linuxkit
+
+
+
+
+
