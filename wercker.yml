@@ -6,15 +6,21 @@ build:
    - script:
       name: Download & Install GO dependency to "/u01/qatools" directory
       code: |
-       cd /u01/qatools;  echo "";  echo "Current working directory is :" `pwd`;  echo ""
-       wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
-       sha256sum `ls go*.tar.gz`
-       tar zxf `ls go*.tar.gz`;  chmod 777 -R go
-       export GOROOT=/u01/qatools;                         echo "GOROOT      : "   $GOROOT
-       export GOPATH=$GOROOT/go;                            echo "GOPATH      : "   $GOPATH
-       export GOBIN=$GOPATH/bin;                            echo "GOBIN       : "   $GOBIN
-       export PATH=$PATH:$GOPATH:$GOBIN;                    echo "PATH        : "   $PATH
-                                                            echo ""
+
+       export VERSION=1.9.2
+       export OS=linux
+       export ARCH=amd64
+       export INSTALLS_HOME=/usr/local
+       wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
+
+       mkdir -p $INSTALLS_HOME/go$VERSION
+       tar -C $INSTALLS_HOME/go$VERSION -xzf go$VERSION.$OS-$ARCH.tar.gz
+
+       set GOROOT=$INSTALLS_HOME/go$VERSION/go
+       set GOPATH=$HOME/go
+       set GOBIN=$GOPATH/bin
+       set PATH=$GOPATH:$GOBIN:$PATH
+
        go version;
 
    - script:
@@ -33,7 +39,7 @@ build:
        KUBE_MASTER_AUTOINIT="" ./boot.sh
 
        kubectl get nodes
-       
+
 
 
 
