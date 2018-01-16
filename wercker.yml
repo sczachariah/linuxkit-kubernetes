@@ -16,8 +16,8 @@ build:
        export INSTALLS_HOME=/usr/local
        wget https://dl.google.com/go/go$VERSION.$OS-$ARCH.tar.gz
 
-       mkdir -p $INSTALLS_HOME/go$VERSION
-       tar -C "$INSTALLS_HOME/go$VERSION" -xzf "go$VERSION.$OS-$ARCH.tar.gz"
+       mkdir -p $INSTALLS_HOME/go
+       tar -C $INSTALLS_HOME/go -xzf go1.9.2.linux-amd64.tar.gz
 
        export GOROOT=$INSTALLS_HOME/go$VERSION/go
        export GOPATH=$HOME/go
