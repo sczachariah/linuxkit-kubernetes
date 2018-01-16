@@ -7,7 +7,6 @@ build:
       name: setup go
       code: |
 
-       sudo yum groups install "Development Tools" -y
        sudo yum install tar wget -y
        sudo yum clean all
 
@@ -24,7 +23,7 @@ build:
        export GOROOT=$INSTALLS_HOME/go
        export GOPATH=$HOME/go
        export GOBIN=$GOROOT/bin
-       export PATH=$GOPATH:$GOBIN:$PATH
+       export PATH=$GOPATH:$GOBIN:$PATH:/usr/bin:/usr/sbin:/bin
 
        go version;
 
@@ -33,12 +32,12 @@ build:
       code: |
 
        go get -u github.com/linuxkit/linuxkit/src/cmd/linuxkit
-       cp -r /scratch/fmwplt/go/bin/linuxkit /bin/linuxkit
+       cp -r $HOME/go/bin/linuxkit /bin/linuxkit
        chmod 755 /bin/linuxkit
 
 
        git clone https://github.com/linuxkit/kubernetes.git
-       cd /scratch/fmwplt/go/src/kubernetes
+       cd $HOME/go/src/kubernetes
        make all
 
        KUBE_MASTER_AUTOINIT="" ./boot.sh
