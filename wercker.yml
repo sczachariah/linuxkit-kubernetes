@@ -1,27 +1,41 @@
 # The container definition we want to use for developing our app
 
 build:
-  box: golang
+  box: oraclelinux:7.3
   steps:
-   - setup-go-workspace:
-      package-dir: weblogic-operator
-
    - script:
-      name: install go tools
+      name: Download & Install GO dependency to "/u01/qatools" directory
       code: |
-       go version
+       cd /u01/qatools;  echo "";  echo "Current working directory is :" `pwd`;  echo ""
+       wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
+       sha256sum `ls go*.tar.gz`
+       tar zxf `ls go*.tar.gz`;  chmod 777 -R go
+       export GOROOT=/u01/qatools;                         echo "GOROOT      : "   $GOROOT
+       export GOPATH=$GOROOT/go;                            echo "GOPATH      : "   $GOPATH
+       export GOBIN=$GOPATH/bin;                            echo "GOBIN       : "   $GOBIN
+       export PATH=$PATH:$GOPATH:$GOBIN;                    echo "PATH        : "   $PATH
+                                                            echo ""
+       go version;
 
    - script:
       name: install dependencies
       code: |
-       set GOROOT=/usr/local/go
-       set GOPATH=$HOME/go
-       set GOBIN=$GOPATH/bin
-       set PATH=$GOPATH:$GOBIN:$PATH
 
        go get -u github.com/linuxkit/linuxkit/src/cmd/linuxkit
        cp -r /scratch/fmwplt/go/bin/linuxkit /bin/linuxkit
        chmod 755 /bin/linuxkit
+
+
+       git clone https://github.com/linuxkit/kubernetes.git
+       cd /scratch/fmwplt/go/src/kubernetes
+       make all
+
+       KUBE_MASTER_AUTOINIT="" ./boot.sh
+
+       kubectl get nodes
+
+
+
 
 
 
