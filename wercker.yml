@@ -32,6 +32,8 @@ build:
       code: |
 
        go get -u github.com/linuxkit/linuxkit/src/cmd/linuxkit
+       ls -ltr $GOROOT
+       ls -ltr $GOPATH
        cp -r $HOME/go/bin/linuxkit /bin/linuxkit
        chmod 755 /bin/linuxkit
 
