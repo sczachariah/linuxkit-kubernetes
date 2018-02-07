@@ -4,6 +4,7 @@
 # 
 # edit the /scratch/* dirs as needed for your installation
 #
+
 PATH=/sbin:/usr/sbin:/bin:/usr/bin:$PATH
 export PATH
 
